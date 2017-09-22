@@ -1,0 +1,465 @@
+<div class="fresh-table toolbar-color" style="display: block;">
+    <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+                        Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+                -->
+
+
+    <div class="bootstrap-table">
+        <div class="fixed-table-toolbar">
+            <div class="bars pull-left">
+                <div class="toolbar">
+                    <!--<button id="alertBtn" [routerLink]="['/NewSalesQuote']" class="btn btn-info btn-fill"> New Sales Quote</button>-->
+                    <p class="category"><button href="#modal-overflow" uk-toggle class="btn btn-info btn-fill btn-wd">New PaySlip</button></p>
+
+                </div>
+            </div>
+            <div class="columns columns-right pull-right">
+                <button class="btn btn-success btn-fill" (click)='refresh()' type="button" name="refresh" title="Refresh"><i class="glyphicon fa fa-refresh"></i></button>
+
+                <div class="keep-open btn-group" title="Columns"><button type="button" class="btn btn-info btn-fill dropdown-toggle" data-toggle="dropdown"><i class="glyphicon fa fa-th-list"></i> <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a (click)="export('Json')">Export Json</a></li>
+                        <li><a (click)="export('Excel')">Export Excel</a></li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <!-- <div class="pull-right search"><input class="form-control" type="text" [(ngModel)]="search" (keyup)="find()" placeholder="Search"></div> -->
+            <div class="pull-right search"><input class="form-control" type="text" [(ngModel)]="search" (keyup)='find()' placeholder="Search"></div>
+        </div>
+        <div class="fixed-table-container" style="padding-bottom: 0px;">
+            <div class="fixed-table-header" style="display: none;">
+                <table></table>
+            </div>
+            <div class="fixed-table-body">
+                <div class="fixed-table-loading" style="top: 45px;">Loading, please wait...</div>
+                <table id="fresh-table" class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th data-field="id">
+                                <div class="th-inner ">ID</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th data-field="name">
+                                <div class="th-inner">Employee</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th data-field="salary">
+                                <div class="th-inner">Date</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th data-field="country">
+                                <div class="th-inner">Description</div>
+                                <div class="fht-cell"></div>
+                            </th>
+
+                            <th data-field="actions">
+                                <div class="th-inner ">Actions</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let entry of entries; trackBy:entry?.id;let i=index;">
+                            <td>{{i+1}}</td>
+                            <td>{{entry.name}}</td>
+                            <td>{{entry.telephonenumber}}</td>
+                            <td>{{entry.billingaddress}}</td>
+                            <td class="td-actions text-right">
+                                <a uk-toggle="target: #rana" rel="tooltip" title="" class="btn btn-info btn-fill btn-wd">Edit</a>
+                            </td>
+
+                            <div id="rana" class="uk-modal-container" uk-modal>
+                                <div class="uk-modal-dialog uk-modal-body">
+
+                                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                                    <div class="uk-modal-header">
+                                        <h2 class="uk-modal-title">Edit Here</h2>
+                                    </div>
+                                    <div class="container-fluid">
+                                        <div class="card">
+                                            <div class="content">
+                                                <div class="header">
+                                                    <legend>PaySlip</legend>
+                                                </div>
+                                                <div class="content">
+                                                    <form method="get" action="" class="form-horizontal">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <div>Date</div>
+                                                                    <input type="text" class="form-control datetimepicker" placeholder="issuedate" name=[(ngModel)]="entry.issuedate" />
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div>Employee</div>
+                                                                    <input type="text" class="form-control" name=Employeename [(ngModel)]="entry.Employeename">
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <div><b>Earning</b></div>
+                                                                    <input type="text" class="form-control" name=earning [(ngModel)]="entry.earning">
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <div>Description</div>
+                                                                    <input type="text" class="form-control" name="description" (ngModel)]="entry.description ">
+                                                                </div>
+
+                                                                <div class=" col-sm-1 ">
+                                                                    <div>Quantity</div>
+                                                                    <input type="text" class="form-control " name="quantity" [(ngModel)]="entry.quantity">
+                                                                </div>
+
+                                                                <div class="col-sm-2 ">
+                                                                    <div>Rate</div>
+                                                                    <input type="text" class="form-control " name="rate" (ngModel)]="entry.rate">
+                                                                </div>
+                                                                <!-- <div class="col-sm-1 "></div> -->
+                                                                <div class="col-sm-2 ">
+                                                                    <div>Total</div>
+                                                                    <input type="text" class="form-control" name="total" [(ngModel)]="entry.total">
+                                                                </div>
+
+                                                            </div>
+                                                            <br>
+                                                            <div class=" row ">
+                                                                <div class="col-sm-7 "></div>
+                                                                <div class="col-sm-2 ">
+                                                                    <div><b>Gross Total</b></div>
+                                                                    <input type="text " class="form-control" name="grosstotal" [(ngModel)]="entry.grosstotal">
+                                                                </div>
+                                                            </div>
+                                                            <br>
+
+
+
+                                                            <div class=" row ">
+                                                                <div class="col-md-2 ">
+                                                                    <div><b>Deduction</b></div>
+                                                                    <input type="text " class="form-control" name="deduction" [(ngModel)]="entry.deduction">
+                                                                </div>
+                                                                <div class=" col-sm-4 ">
+                                                                    <div>Description</div>
+                                                                    <input type="text " class="form-control " name="deduction_description" [(ngModel)]="entry.deduction_description">
+                                                                </div>
+                                                                <div class=" col-sm-1 "></div>
+                                                                <div class="col-sm-2 ">
+                                                                    <div>Amount</div>
+                                                                    <input type="text " class="form-control" name="deduction_amount" [(ngModel)]="entry.deduction_amount">
+                                                                </div>
+
+                                                            </div>
+                                                            <br>
+                                                            <div class=" row ">
+                                                                <div class="col-sm-7 "></div>
+                                                                <div class="col-sm-2 ">
+                                                                    <div>Total Deduction</div>
+                                                                    <input type="text " class="form-control " name="deduction_Total" [(ngModel)]="entry.deduction_Total">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class=" row ">
+                                                                <div class="col-sm-7 "></div>
+                                                                <div class="col-sm-2 ">
+                                                                    <div><b>Net Pay</b></div>
+                                                                    <input type="text " class="form-control" name="netpay" [(ngModel)]="entry.netpay">
+                                                                </div>
+                                                            </div>
+                                                            <br>
+
+                                                            <br>
+
+                                                            <div class=" row ">
+                                                                <div class="col-md-2 ">
+                                                                    <div><b>Employee Contribution</b></div>
+                                                                    <input type="text " class="form-control" name="employee_contribution" [(ngModel)]="entry.employee_contribution">
+                                                                </div>
+                                                                <div class=" col-sm-4 ">
+                                                                    <div>Description</div>
+                                                                    <input type="text " class="form-control" name="deduction_description" [(ngModel)]="entry.deduction_description">
+                                                                </div>
+                                                                <div class=" col-sm-1 "></div>
+
+                                                                <div class="col-sm-2 ">
+                                                                    <div>Amount</div>
+                                                                    <input type="text " class="form-control " name="deduction_amount" [(ngModel)]="entry.deduction_amount">
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <div class=" row ">
+                                                                <div class="col-sm-7 "></div>
+                                                                <div class="col-sm-2 ">
+                                                                    <div><b>Total Contribution</b></div>
+                                                                    <input type="text " class="form-control
+                                                                        " [(ngModel)]=">
+                                                                </div>
+                                                            </div>
+                                                            <br>
+
+
+
+
+
+
+                                                            <br>
+                                                            <div class=" row ">
+                                                                <div class="col-sm-6 ">
+                                                                    <div>Notes</div>
+                                                                    <input type="text " class="form-control
+                                                                        " [(ngModel)]=">
+                                                                </div>
+                                                            </div>
+                                                            <br>
+
+
+                                                            <!-- <div class=" row ">
+                                                                <div class="col-md-2 ">
+                                                                    <button type="button " class="btn btn-info btn-fill
+                                                                        btn-wd ">Create</button>
+                                                                </div>
+                                                             </div> -->
+                                                        </div>
+                                                        <!-- container-->
+                                                    </form>
+                                                </div>
+                                                <!-- second content-->
+                                            </div>
+                                            <!-- first content -->
+                                        </div>
+                                        <!-- card -->
+                                    </div>
+
+                                    <div class="uk-modal-footer uk-text-right ">
+                                        <button class="btn btn-info btn-fill btn-wd uk-modal-close " (click)="update(entry)
+                                                                        " type="button ">Update</button>
+                                        <button class="btn btn-danger btn-fill btn-wd uk-modal-close " (click)="delete(entry)
+                                                                        " type="button ">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="fixed-table-footer " style="display: none; ">
+                <table>
+                    <tbody>
+                        <tr></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="fixed-table-pagination ">
+                <br>
+                <br>
+                <br>
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix "></div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+<!--enter new Employee page-->
+
+<div id="modal-overflow " class="uk-modal-container " uk-modal>
+    <div class="uk-modal-dialog uk-modal-body ">
+
+        <button class="uk-modal-close-default " type="button " uk-close></button>
+
+        <div class="uk-modal-header ">
+            <h2 class="uk-modal-title ">New PaySlip</h2>
+        </div>
+        <div class="container-fluid ">
+            <!-- <div class="card "> -->
+
+            <!-- <div class="header ">
+                        <legend>PaySlip</legend>
+                    </div> -->
+
+            <form method="get " action=" " class="form-horizontal ">
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-md-2 ">
+                            <div>Date</div>
+                            <input type="text " class="form-control datetimepicker " placeholder="Date " [(ngModel)]="
+                                                                    />
+
+                                                                </div>
+
+                                                            </div>
+                                                            <br>
+                                                            <div class=" row ">
+                                                                <div class="col-md-4 ">
+                                                                    <div>Employee</div>
+                                                                    <input type="text " class="form-control
+                                " [(ngModel)]=">
+                        </div>
+                    </div>
+                    <br>
+                    <div class=" row ">
+                        <div class="col-md-2 ">
+                            <div><b>Earning</b></div>
+                            <input type="text " class="form-control " [(ngModel)]=">
+                                                                </div>
+                                                                <div class=" col-sm-2 ">
+                                                                    <div>Description</div>
+                                                                    <input type="text " class="form-control
+                                " [(ngModel)]=">
+                        </div>
+
+                        <div class=" col-sm-1 ">
+                            <div>Quantity</div>
+                            <input type="text " class="form-control " [(ngModel)]=">
+                                                                </div>
+
+                                                                <div class=" col-sm-2 ">
+                                                                    <div>Rate</div>
+                                                                    <input type="text " class="form-control
+                                " [(ngModel)]=">
+                        </div>
+                        <!-- <div class=" col-sm-1 "></div> -->
+                        <div class="col-sm-2 ">
+                            <div>Total</div>
+                            <input type="text " class="form-control " [(ngModel)]=">
+                                                                </div>
+
+                                                            </div>
+                                                            <br>
+                                                            <div class=" row ">
+                                                                <div class="col-sm-7 "></div>
+                                                                <div class="col-sm-2 ">
+                                                                    <div><b>Gross Total</b></div>
+                                                                    <input type="text " class="form-control
+                                " [(ngModel)]=">
+                        </div>
+                    </div>
+                    <br>
+
+
+
+                    <div class=" row ">
+                        <div class="col-md-2 ">
+                            <div><b>Deduction</b></div>
+                            <input type="text " class="form-control " [(ngModel)]=">
+                                                                </div>
+                                                                <div class=" col-sm-4 ">
+                                                                    <div>Description</div>
+                                                                    <input type="text " class="form-control
+                                " [(ngModel)]=">
+                        </div>
+                        <div class=" col-sm-1 "></div>
+                        <div class="col-sm-2 ">
+                            <div>Amount</div>
+                            <input type="text " class="form-control " [(ngModel)]=">
+                                                                </div>
+
+                                                            </div>
+                                                            <br>
+                                                            <div class=" row ">
+                                                                <div class="col-sm-7 "></div>
+                                                                <div class="col-sm-2 ">
+                                                                    <div>Total Deduction</div>
+                                                                    <input type="text " class="form-control
+                                " [(ngModel)]=">
+                        </div>
+                    </div>
+
+                    <div class=" row ">
+                        <div class="col-sm-7 "></div>
+                        <div class="col-sm-2 ">
+                            <div><b>Net Pay</b></div>
+                            <input type="text " class="form-control " [(ngModel)]=">
+                                                                </div>
+                                                            </div>
+                                                            <br>
+
+                                                            <br>
+
+                                                            <div class=" row ">
+                                                                <div class="col-md-2 ">
+                                                                    <div><b>Employee Contribution</b></div>
+                                                                    <input type="text " class="form-control
+                                " [(ngModel)]=">
+                        </div>
+                        <div class=" col-sm-4 ">
+                            <div>Description</div>
+                            <input type="text " class="form-control " [(ngModel)]=">
+                                                                </div>
+                                                                <div class=" col-sm-1 "></div>
+
+                                                                <div class="col-sm-2 ">
+                                                                    <div>Amount</div>
+                                                                    <input type="text " class="form-control
+                                " [(ngModel)]=">
+                        </div>
+
+                    </div>
+
+
+                    <div class=" row ">
+                        <div class="col-sm-7 "></div>
+                        <div class="col-sm-2 ">
+                            <div><b>Total Contribution</b></div>
+                            <input type="text " class="form-control " [(ngModel)]=" ">
+                        </div>
+                    </div>
+                    <br>
+
+
+
+
+
+
+                    <br>
+                    <div class="row ">
+                        <div class="col-sm-6 ">
+                            <div>Notes</div>
+                            <input type="text " class="form-control " [(ngModel)]=">
+                                                                </div>
+                                                            </div>
+                                                            <br>
+
+
+                                                            <!-- <div class=" row ">
+                                    <div class="col-md-2 ">
+                                        <button type="button " class="btn btn-info btn-fill btn-wd ">Create</button>
+                                    </div>
+                                </div> -->
+                                                        </div>
+                                                        <!-- container-->
+                                                    </form>
+
+
+                                                    <!-- first content -->
+                                                    <!-- / </div> -->
+                                                    <!-- card -->
+                                                </div>
+
+
+                                                <div class="uk-modal-footer uk-text-right ">
+                                                    <button class="uk-button uk-button-default uk-modal-close " type="button ">Cancel</button>
+                                                    <button class="uk-button uk-button-primary uk-modal-close ">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>

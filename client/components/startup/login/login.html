@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-md-3">
+        <form method="#" action="#">
+
+            <!--   if you want to have the card without animation please remove the ".card-hidden" class   -->
+            <div class="card">
+                <div class="header text-center">Login</div>
+                <div class="content">
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <input placeholder="Enter email" name="user" [(ngModel)]="user" style="height:60%" class="form-control ">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="Password" placeholder="Password" name="pass" [(ngModel)]="pass" style="height:60%" class="form-control ">
+                    </div>
+
+                </div>
+                <div class="footer text-center">
+                    <button type="button" class="btn btn-fill btn-info btn-sm " [routerLink]="['/app-Admin']">&nbsp; &nbsp; &nbsp; &nbsp; Signup &nbsp; &nbsp; &nbsp; &nbsp; </button>
+                    <!--<button (click)="submit();" type="submit" class="btn btn-fill btn-success btn-sm  ">&nbsp; &nbsp; &nbsp; &nbsp; Login  &nbsp; &nbsp; &nbsp; &nbsp;</button>-->
+                    <button (click)="submitForm();" type="submit" class="btn btn-fill btn-success btn-sm  ">&nbsp; &nbsp; &nbsp; &nbsp; Login  &nbsp; &nbsp; &nbsp; &nbsp;</button>
+                    <!--[routerLink]="['/admin']"[routerLink]="['/deskboard']"-->
+                </div>
+                <h6 id="time" class="clock text-center" style="color:black"></h6>
+                <h6 id="day" class="day text-center" style="color:black"></h6>
+                <h6 id="month" class="month text-center" style="color:black"></h6>
+                <h6 id="year" class="year text-center" style="color:black"></h6>
+            </div>
+
+        </form>
+
+    </div>
+</div>

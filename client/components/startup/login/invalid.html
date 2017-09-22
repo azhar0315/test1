@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <form method="#" action="#">
+
+
+            <!--   if you want to have the card without animation please remove the ".card-hidden" class   -->
+            <div class="card">
+                <div class="header text-center">Invalid</div>
+                <div class="content">
+                    <p style="text-align:center;">
+                        Your Username/Password is Invalid, <a [routerLink]="['/app-Admin']">Try again</a> or send admin a
+                        request !
+
+                    </p>
+                </div>
+                <div class="footer text-center">
+                    <button [routerLink]="['/']" type="submit" class="btn btn-fill btn-success btn-sm    btn-wd">Send Request</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="col-md-2"></div>
+
+
+</div>

@@ -1,0 +1,232 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">MyBusinessDetails's List </h4><br>
+                <p class="category"><button href="#modal-overflow" uk-toggle class="btn btn-info btn-fill btn-wd">New MyBusinessDetails</button></p>
+            </div>
+            <div class="content table-responsive table-full-width">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>MyBusiness name</th>
+                            <th>Phone Number</th>
+                            <th>Business address Address</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let entry of entries; trackBy:entry?.id">
+                            <td class="text-center"></td>
+                            <td>{{entry.mybusinessname}}</td>
+                            <td>{{entry.mytelephonenumber}}</td>
+                            <td>{{entry.mybusinessaddress}}</td>
+                            <td class="td-actions text-right">
+                                <a uk-toggle="target: #rana" rel="tooltip" title="" class="btn btn-info btn-fill btn-wd">Edit</a>
+                            </td>
+
+                            <div id="rana" class="uk-modal-container" uk-modal>
+                                <div class="uk-modal-dialog uk-modal-body">
+
+                                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                                    <div class="uk-modal-header">
+                                        <h2 class="uk-modal-title">Edit Here</h2>
+                                    </div>
+                                    <div class="uk-modal-body">
+                                        <form novalidate #form="ngForm">
+                                            <!--enter new MyBusinessDetails code here-->
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Business Name</label>
+                                                    <div class="col-md-4">
+                                                        <input type="text" placeholder="name" class="form-control" [(ngModel)]="entry.mybusinessname" name="mybusinessname" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Business Identifier</label>
+                                                    <div class="col-md-4">
+                                                        <input type="text" placeholder="name" class="form-control" [(ngModel)]="entry.mybusinessidentifier" name="mybusinessidentifier"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <br>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Business Address</label>
+                                                    <div class="col-md-5">
+                                                        <input type="text" placeholder="address" class="form-control" [(ngModel)]="entry.mybusinessaddress" name=" mybusinessaddress"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <br>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Email address</label>
+                                                    <div class="col-md-5">
+                                                        <input type="email" placeholder="abc@gmail.com" class="form-control" #emailField="ngModel" [(ngModel)]="entry.mybusinessemail"
+                                                            name="mybusinessemail" required pattern=".+@.+">
+                                                        <p *ngIf="emailField.touched && emailField.invalid" class="alert alert-danger">Please enter a valid email</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Telephone Number</label>
+                                                    <div class="col-md-5">
+                                                        <input type="number" placeholder="" class="form-control" [(ngModel)]="entry.mytelephonenumber" name="mytelephonenumbers"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Fax</label>
+                                                    <div class="col-md-5">
+                                                        <input type="number" placeholder="" class="form-control" [(ngModel)]="entry.myfax" name="myfax" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Mobile</label>
+                                                    <div class="col-md-5">
+                                                        <input type="number" placeholder="" class="form-control" [(ngModel)]="entry.mymobile" name="mymobile" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Business Logo</label>
+                                                    <div class="col-md-5">
+                                                        <input type="text" placeholder="" class="form-control" [(ngModel)]="entry.logo" name="logo" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+                                        </form>
+                                    </div>
+                                    <div class="uk-modal-footer uk-text-right">
+                                        <button class="btn btn-info btn-fill btn-wd uk-modal-close" (click)="update(entry)" type="button">Update</button>
+                                        <button class="btn btn-danger btn-fill btn-wd uk-modal-close" (click)="delete(entry)" type="button">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!--enter new MyBusinessDetails page-->
+
+<div id="modal-overflow" class="uk-modal-container" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">New MyBusinessDetailss Details</h2>
+        </div>
+
+        <div styles="height:6000px;" class="uk-modal-body">
+            <form novalidate="" #form="ngForm" id="allInputsFormValidation" class="form-horizontal" action="#" method="post">
+                <!--enter new MyBusinessDetails code here-->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Business Name</label>
+                    <div class="col-md-4">
+                        <input type="text" placeholder="name" class="form-control" [(ngModel)]="entry.mybusinessname" name="mybusinessname" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Business Identifier</label>
+                    <div class="col-md-4">
+                        <input type="text" placeholder="name" class="form-control" [(ngModel)]="entry.mybusinessidentifier" name="mybusinessidentifier"
+                            required>
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Business Address</label>
+                    <div class="col-md-5">
+                        <input type="text" placeholder="address" class="form-control" [(ngModel)]="entry.mybusinessaddress" name=" mybusinessaddress"
+                            required>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Email address</label>
+                    <div class="col-md-5">
+                        <input type="email" placeholder="abc@gmail.com" class="form-control" #emailField="ngModel" [(ngModel)]="entry.mybusinessemail"
+                            name="mybusinessemail" required pattern=".+@.+">
+                        <p *ngIf="emailField.touched && emailField.invalid" class="alert alert-danger">Please enter a valid email</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Telephone Number</label>
+                    <div class="col-md-5">
+                        <input type="number" placeholder="" class="form-control" [(ngModel)]="entry.mytelephonenumber" name="mytelephonenumbers"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Fax</label>
+                    <div class="col-md-5">
+                        <input type="number" placeholder="" class="form-control" [(ngModel)]="entry.myfax" name="myfax" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Mobile</label>
+                    <div class="col-md-5">
+                        <input type="number" placeholder="" class="form-control" [(ngModel)]="entry.mymobile" name="mymobile" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Business Logo</label>
+                    <div class="col-md-5">
+                        <input type="text" placeholder="" class="form-control" [(ngModel)]="entry.logo" name="logo" required>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="uk-modal-footer uk-text-right ">
+            <button class="uk-button uk-button-default uk-modal-close " type="button ">Cancel</button>
+            <button class="uk-button uk-button-primary uk-modal-close " (click)="save(entry) " [disabled]="form.invalid ">Save</button>
+        </div>
+    </div>
+</div>
